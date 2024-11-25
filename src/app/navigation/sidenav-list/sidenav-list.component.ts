@@ -1,10 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
+
 import { AuthService } from '../../services/auth.service';
+import { MaterialModel } from '../../material.module';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav-list',
   templateUrl: './sidenav-list.component.html',
-  styleUrls: ['./sidenav-list.component.scss']
+  styleUrls: ['./sidenav-list.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    MaterialModel
+  ]
 })
 export class SidenavListComponent {
 

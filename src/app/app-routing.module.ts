@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { MealPlannerComponent } from './meal-planner/meal-planner.component';
+import { ProfileComponent } from './auth/profile/profile.component';
 
 // /home - welcome page
 // /login
@@ -29,6 +31,18 @@ const routes: Routes = [
   {
     path: "signup",
     component: SignupComponent
+  },
+  {
+    path: "profile",
+    component: ProfileComponent
+  },
+  {
+    path: "meal-planner",
+    component: MealPlannerComponent
+  },
+  {
+    path: "recipes",
+    loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule)
   }
 ];
 
