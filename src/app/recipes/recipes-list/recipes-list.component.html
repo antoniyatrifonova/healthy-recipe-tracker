@@ -1,1 +1,17 @@
-<p>recipes-list works!</p>
+<div class="recipe-grid" *ngIf="recipes | async as recipes">
+  <mat-card class="recipe-card" *ngFor="let recipe of recipes">
+    <mat-card-header>
+      <mat-card-title>{{ recipe.title }}</mat-card-title>
+      <mat-card-subtitle>By {{ recipe.author }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <p><strong>Portions:</strong> {{ recipe.portions }}</p>
+        <p><strong>Calories:</strong> {{ recipe.caloriesPerPortion }} kcal</p>
+        <p><strong>Protein:</strong> {{ recipe.proteinPerPortion }} g</p>
+        <p><strong>Carbs:</strong> {{ recipe.carbsPerPortion }} g</p>
+        <p><strong>Fats:</strong> {{ recipe.fatsPerPortion }} g</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
