@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Recipe } from '../model/recipe';
+import { Recipe } from '../../shared/model/recipe';
 
 @Component({
   selector: 'app-recipe',

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable } from "rxjs";
-import { Recipe } from "../recipes/model/recipe";
+import { Recipe } from "../shared/model/recipe";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,12 @@ export class RecipesService {
       portions: 4,
       author: "My Author",
       createdAt: new Date(),
-      tags: ["salad", "lunch"]
+      tags: ["salad", "lunch"],
+      imageUrl: 'assets/images/recipe1.jpg',
+      rating: {
+        totalVotes: 100,
+        averageRating: 5,
+      },
     };
 
     this.recipesCollection.get().subscribe((snapshot) => {

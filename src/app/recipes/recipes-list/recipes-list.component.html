@@ -1,17 +1,31 @@
-<div class="recipe-grid" *ngIf="recipes | async as recipes">
-  <mat-card class="recipe-card" *ngFor="let recipe of recipes">
-    <mat-card-header>
-      <mat-card-title>{{ recipe.title }}</mat-card-title>
-      <mat-card-subtitle>By {{ recipe.author }}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <div>
-        <p><strong>Portions:</strong> {{ recipe.portions }}</p>
-        <p><strong>Calories:</strong> {{ recipe.caloriesPerPortion }} kcal</p>
-        <p><strong>Protein:</strong> {{ recipe.proteinPerPortion }} g</p>
-        <p><strong>Carbs:</strong> {{ recipe.carbsPerPortion }} g</p>
-        <p><strong>Fats:</strong> {{ recipe.fatsPerPortion }} g</p>
+<div class="recipes-container">
+  <h2 class="section-title">Most Rated Recipes</h2>
+  <div *ngIf="recipes$ | async as recipes">
+    <div class="most-rated-recipes">
+      <div *ngFor="let recipe of recipes.mostRatedRecipes" class="most-rated-recipe" mat-card>
+        <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
+        <div class="recipe-info">
+          <h3>{{ recipe.title }}</h3>
+          <p>By {{ recipe.author }}</p>
+          <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
+        </div>
       </div>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
+
+  <h2 class="section-title">All Recipes</h2>
+  <div *ngIf="recipes$ | async as recipes">
+    <div class="all-recipes">
+      <ng-container *ngFor="let recipe of recipes.allRecipes">
+        <div *ngIf="!recipes.mostRatedRecipes.includes(recipe)" class="recipe-card" mat-card>
+          <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
+          <div class="recipe-info">
+            <h3>{{ recipe.title }}</h3>
+            <p>By {{ recipe.author }}</p>
+            <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 </div>

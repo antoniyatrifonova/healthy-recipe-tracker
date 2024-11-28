@@ -4,6 +4,11 @@ export interface Ingredient {
   unit: string;
 }
 
+export interface Rating {
+  averageRating: number;
+  totalVotes: number;
+}
+
 export interface Recipe {
   id?: string;
   title: string;
@@ -18,4 +23,6 @@ export interface Recipe {
   createdAt?: Date;
   tags?: string[];
   imageUrl?: string;
+  rating: Rating
 }
+

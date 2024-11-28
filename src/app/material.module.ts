@@ -10,11 +10,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
-  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule],
-  exports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule,MatCardModule, MatGridListModule]
+  imports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule, MatTooltipModule],
+  exports: [MatButtonModule, MatFormFieldModule, MatInputModule, MatDatepickerModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatCardModule, MatGridListModule, MatTooltipModule]
 })
 export class MaterialModel {
 
