@@ -4,7 +4,9 @@
     <div class="most-rated-recipes">
       <div *ngFor="let recipe of recipes.mostRatedRecipes" class="most-rated-recipe" mat-card>
         <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
-        <div class="recipe-info">
+        <div
+          matTooltip="Calories: {{ recipe.caloriesPerPortion }} | Protein: {{ recipe.proteinPerPortion }}g | Carbs: {{ recipe.carbsPerPortion }}g | Fats: {{ recipe.fatsPerPortion }}g"
+          matTooltipPosition="above" matTooltipShowDelay="200" class="recipe-info">
           <h3>{{ recipe.title }}</h3>
           <p>By {{ recipe.author }}</p>
           <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
@@ -19,7 +21,9 @@
       <ng-container *ngFor="let recipe of recipes.allRecipes">
         <div *ngIf="!recipes.mostRatedRecipes.includes(recipe)" class="recipe-card" mat-card>
           <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
-          <div class="recipe-info">
+          <div
+            matTooltip="Calories: {{ recipe.caloriesPerPortion }} | Protein: {{ recipe.proteinPerPortion }}g | Carbs: {{ recipe.carbsPerPortion }}g | Fats: {{ recipe.fatsPerPortion }}g"
+            matTooltipPosition="above" matTooltipShowDelay="200" class="recipe-info">
             <h3>{{ recipe.title }}</h3>
             <p>By {{ recipe.author }}</p>
             <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
