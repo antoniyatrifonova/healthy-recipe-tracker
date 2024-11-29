@@ -50,7 +50,11 @@ export class RecipesService {
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.recipesCollection.valueChanges();
+    return this.recipesCollection.valueChanges({ idField: 'id' });
+  }
+
+  public getRecipeById(id: string): Observable<Recipe | undefined> {
+    return this.recipesCollection.doc(id).valueChanges();
   }
 
 }

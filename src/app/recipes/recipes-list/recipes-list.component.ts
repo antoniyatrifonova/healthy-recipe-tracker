@@ -5,6 +5,7 @@ import { RecipesService } from 'src/app/services/recipes.service';
 import { MaterialModel } from 'src/app/material.module';
 import { Recipe } from '../../shared/model/recipe';
 import { map } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-recipes-list',
@@ -13,6 +14,7 @@ import { map } from 'rxjs/operators';
   standalone: true,
   imports: [
     CommonModule,
+    RouterModule,
     MaterialModel,
   ]
 })

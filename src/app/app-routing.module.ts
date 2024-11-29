@@ -4,6 +4,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MealPlannerComponent } from './meal-planner/meal-planner.component';
 import { ProfileComponent } from './auth/profile/profile.component';
+import { RecipeComponent } from './recipes/recipe/recipe.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,11 @@ const routes: Routes = [
   },
   {
     path: "recipes",
-    loadChildren: () => import('./recipes/recipes.module').then(m => m.RecipesModule)
+    loadComponent: () => import('./recipes/recipes-list/recipes-list.component').then(m => m.RecipesListComponent)
+  },
+  {
+    path: "recipes/:id",
+    component: RecipeComponent
   },
   {
     path: "login",

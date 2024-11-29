@@ -3,14 +3,16 @@
   <div *ngIf="recipes$ | async as recipes">
     <div class="most-rated-recipes">
       <div *ngFor="let recipe of recipes.mostRatedRecipes" class="most-rated-recipe" mat-card>
-        <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
-        <div
-          matTooltip="Calories: {{ recipe.caloriesPerPortion }} | Protein: {{ recipe.proteinPerPortion }}g | Carbs: {{ recipe.carbsPerPortion }}g | Fats: {{ recipe.fatsPerPortion }}g"
-          matTooltipPosition="above" matTooltipShowDelay="200" class="recipe-info">
-          <h3>{{ recipe.title }}</h3>
-          <p>By {{ recipe.author }}</p>
-          <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
-        </div>
+        <a [routerLink]="['/recipes', recipe.id]" class="recipe-link">
+          <img [src]="recipe.imageUrl" alt="{{ recipe.title }}" class="recipe-img" />
+          <div
+            matTooltip="Calories: {{ recipe.caloriesPerPortion }} | Protein: {{ recipe.proteinPerPortion }}g | Carbs: {{ recipe.carbsPerPortion }}g | Fats: {{ recipe.fatsPerPortion }}g"
+            matTooltipPosition="above" matTooltipShowDelay="200" class="recipe-info">
+            <h3>{{ recipe.title }}</h3>
+            <p>By {{ recipe.author }}</p>
+            <p>⭐ {{ recipe.rating.averageRating || 0 }} ({{ recipe.rating.totalVotes || 0 }} votes)</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>

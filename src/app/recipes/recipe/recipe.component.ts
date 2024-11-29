@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Recipe } from '../../shared/model/recipe';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { RecipesService } from 'src/app/services/recipes.service';
+import { Observable } from 'rxjs';
+import { Recipe } from 'src/app/shared/model/recipe';
 
 @Component({
   selector: 'app-recipe',
@@ -8,20 +11,28 @@ import { Recipe } from '../../shared/model/recipe';
   styleUrls: ['./recipe.component.scss'],
   standalone: true,
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
-export class RecipeComponent {
-  recipe: Recipe = {
-    title: '',
-    portions: 1,
-    ingredients: [],
-    caloriesPerPortion: 0,
-    proteinPerPortion: 0,
-    carbsPerPortion: 0,
-    fatsPerPortion: 0,
-    instructions: "",
-    author: "",
-    tags: [],
-  };
+export class RecipeComponent implements OnInit {
+
+  recipe!: Observable<Recipe | undefined>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private recipesService: RecipesService,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const recipeId = this.route.snapshot.paramMap.get('id');
+
+    if (recipeId) {
+      this.recipe = this.recipesService.getRecipeById(recipeId);
+    } else {
+      console.error('Recipe ID is undefined');
+      this.router.navigate(['/recipes']);
+    }
+  }
 }
