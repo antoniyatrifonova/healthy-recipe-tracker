@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "healthy-recipe-tracker:build:production"
+              "buildTarget": "healthy-recipe-tracker:build:production"
             },
             "development": {
-              "browserTarget": "healthy-recipe-tracker:build:development"
+              "buildTarget": "healthy-recipe-tracker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -84,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "healthy-recipe-tracker:build"
+            "buildTarget": "healthy-recipe-tracker:build"
           }
         },
         "test": {
