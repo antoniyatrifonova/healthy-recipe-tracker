@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, NgForm } from '@angular/forms';
-import { MaterialModel } from '../../material.module';
+
+import { MaterialModel } from '../../shared/material.module';
 
 @Component({
   selector: 'app-signup',

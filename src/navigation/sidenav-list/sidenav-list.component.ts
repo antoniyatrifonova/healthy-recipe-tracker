@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-
-import { AuthService } from '../../services/auth.service';
-import { MaterialModel } from '../../material.module';
 import { RouterModule } from '@angular/router';
+
+import { MaterialModel } from '../../shared/material.module';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-sidenav-list',

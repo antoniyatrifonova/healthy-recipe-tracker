@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { RecipesService } from 'src/app/services/recipes.service';
-import { MaterialModel } from 'src/app/material.module';
-import { Recipe } from '../../shared/model/recipe';
-import { map } from 'rxjs/operators';
 import { RouterModule } from '@angular/router';
+
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { MaterialModel } from '../../shared/material.module';
+import { Recipe } from '../../shared/model/recipe';
+import { RecipesService } from '../../shared/services/recipes.service';
 
 @Component({
   selector: 'app-recipes-list',

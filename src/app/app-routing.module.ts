@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { MealPlannerComponent } from './meal-planner/meal-planner.component';
-import { ProfileComponent } from './auth/profile/profile.component';
-import { RecipeComponent } from './recipes/recipe/recipe.component';
+
+import { SignupComponent } from '../auth/signup/signup.component';
+import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
+import { RecipeComponent } from '../recipes/recipe/recipe.component';
+import { LoginComponent } from '../auth/login/login.component';
+import { ProfileComponent } from '../auth/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: "recipes",
-    loadComponent: () => import('./recipes/recipes-list/recipes-list.component').then(m => m.RecipesListComponent)
+    loadComponent: () => import('../recipes/recipes-list/recipes-list.component').then(m => m.RecipesListComponent)
   },
   {
     path: "recipes/:id",

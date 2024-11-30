@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { RecipesService } from 'src/app/services/recipes.service';
+
 import { Observable } from 'rxjs';
-import { Recipe } from 'src/app/shared/model/recipe';
+
+import { Recipe } from '../../shared/model/recipe';
+import { RecipesService } from '../../shared/services/recipes.service';
 
 @Component({
   selector: 'app-recipe',
