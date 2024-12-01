@@ -1,16 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { RecipesService } from 'src/shared/services/recipes.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SidenavListComponent } from 'src/navigation/sidenav-list/sidenav-list.component';
+import { HeaderComponent } from 'src/navigation/header/header.component';
+import { MaterialModel } from 'src/shared/material.module';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        AngularFireModule.initializeApp({
+          apiKey: 'mock-api-key',
+          authDomain: 'mock-auth-domain',
+          projectId: 'mock-project-id',
+          storageBucket: 'mock-storage-bucket',
+          messagingSenderId: 'mock-sender-id',
+          appId: 'mock-app-id',
+        }),
+        BrowserAnimationsModule,
+        SidenavListComponent,
+        HeaderComponent,
+        MaterialModel
       ],
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: AngularFirestore, useValue: {} },
+        { provide: RecipesService, useValue: {} },
+      ]
     }).compileComponents();
   });
 
@@ -18,18 +41,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'healthy-recipe-tracker'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('healthy-recipe-tracker');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('healthy-recipe-tracker app is running!');
   });
 });

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidenavListComponent } from './sidenav-list.component';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SidenavListComponent', () => {
   let component: SidenavListComponent;
@@ -8,7 +10,13 @@ describe('SidenavListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SidenavListComponent ]
+      imports: [ SidenavListComponent, RouterTestingModule ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: { snapshot: { params: { id: 'mock-id' } } }
+        }
+      ]
     })
     .compileComponents();
 

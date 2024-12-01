@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModel } from '../shared/material.module';
 import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
+
 import { HeaderComponent } from '../navigation/header/header.component';
 import { SidenavListComponent } from '../navigation/sidenav-list/sidenav-list.component';
 import { SignupComponent } from '../auth/signup/signup.component';
@@ -28,9 +29,9 @@ import { ProfileComponent } from '../auth/profile/profile.component';
     SignupComponent,
     LoginComponent,
     HeaderComponent,
-    SidenavListComponent,
     MealPlannerComponent,
     ProfileComponent,
+    SidenavListComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule
   ],

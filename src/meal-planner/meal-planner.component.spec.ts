@@ -8,7 +8,7 @@ describe('MealPlannerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MealPlannerComponent ]
+      imports: [ MealPlannerComponent ]
     })
     .compileComponents();
 

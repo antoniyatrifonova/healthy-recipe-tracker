@@ -12,5 +12,8 @@ export class AppComponent implements OnInit {
 
   constructor(private recipesService: RecipesService) {}
 
-  ngOnInit(): void {}
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+  ngOnInit(): void {
+    // empty for now
+  }
 }

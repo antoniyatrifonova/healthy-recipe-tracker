@@ -45,6 +45,9 @@ export class RecipesListComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {}
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
+  ngOnInit(): void {
+    // empty for now
+  }
 
 }

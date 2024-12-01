@@ -41,7 +41,8 @@
 
       <!-- Show Logout if logged in -->
       <li>
-        <a *ngIf="auth.loggedIn" (click)="logout()" mat-button>
+        <a *ngIf="auth.loggedIn" (click)="logout()" (keydown.enter)="logout()" (keydown.space)="logout()" mat-button
+          tabindex="0">
           <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </a>
