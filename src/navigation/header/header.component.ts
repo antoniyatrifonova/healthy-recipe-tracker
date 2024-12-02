@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { MaterialModel } from '../../shared/material.module';
 import { AuthService } from '../../shared/services/auth.service';
@@ -21,7 +21,7 @@ import { AuthService } from '../../shared/services/auth.service';
 })
 export class HeaderComponent {
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService, private router: Router) {}
 
   @Output() sidenavToggle = new EventEmitter<void>();
 
@@ -30,7 +30,7 @@ export class HeaderComponent {
   }
 
   login() {
-    this.auth.login();
+    this.router.navigate(['/login']);
   }
 
   logout() {

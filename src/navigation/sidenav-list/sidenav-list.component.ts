@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { MaterialModel } from '../../shared/material.module';
 import { AuthService } from '../../shared/services/auth.service';
@@ -20,14 +20,14 @@ export class SidenavListComponent {
 
   @Output() closeSidenav = new EventEmitter<void>();
 
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService,  private router: Router) {}
 
   onClose() {
     this.closeSidenav.emit();
   }
 
   login() {
-    this.auth.login();
+    this.router.navigate(['/login']);
   }
 
   logout() {

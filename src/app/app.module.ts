@@ -16,6 +16,7 @@ import { SidenavListComponent } from '../navigation/sidenav-list/sidenav-list.co
 import { SignupComponent } from '../auth/signup/signup.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { ProfileComponent } from '../auth/profile/profile.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ProfileComponent } from '../auth/profile/profile.component';
     ProfileComponent,
     SidenavListComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

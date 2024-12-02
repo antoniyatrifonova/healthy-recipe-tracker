@@ -1,9 +1,11 @@
 <mat-nav-list>
   <a mat-list-item (click)="onClose()" routerLink="/recipes">Recipes</a>
-  <a mat-list-item *ngIf="auth.loggedIn" (click)="onClose()" routerLink="/meal-planner">Meal Planner</a>
-  <a mat-list-item *ngIf="auth.loggedIn" (click)="onClose()" routerLink="/profile">Profile</a>
-  <a mat-list-item *ngIf="!auth.loggedIn" (click)="onClose()" (click)="login()" routerLink="/login">Login</a>
-  <a mat-list-item *ngIf="!auth.loggedIn" (click)="onClose()" routerLink="/signup">SignUp</a>
-  <a mat-list-item *ngIf="auth.loggedIn" (click)="onClose()" (click)="logout()" (keydown.enter)="logout()"
-    (keydown.space)="logout()" mat-button tabindex="0">Logout</a>
+  <a mat-list-item *ngIf="auth.isAuthenticated" (click)="onClose()" routerLink="/meal-planner">Meal Planner</a>
+  <a mat-list-item *ngIf="auth.isAuthenticated" (click)="onClose()" routerLink="/profile">Profile</a>
+  <a mat-list-item *ngIf="!auth.isAuthenticated" (click)="onClose()" routerLink="/login">Login</a>
+  <a mat-list-item *ngIf="!auth.isAuthenticated" (click)="onClose()" routerLink="/signup">SignUp</a>
+  <a mat-list-item *ngIf="auth.isAuthenticated" (click)="onClose(); logout()" (keydown.enter)="logout()"
+    (keydown.space)="logout()" routerLink="/login">
+    Logout
+  </a>
 </mat-nav-list>

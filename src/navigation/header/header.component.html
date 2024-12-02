@@ -4,7 +4,11 @@
       <mat-icon>menu</mat-icon>
     </button>
   </div>
-  <div><a routerLink="/">LOGO</a></div>
+
+  <div>
+    <a routerLink="/">LOGO</a>
+  </div>
+
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
     <ul fxLayout fxLayoutGap="10px" class="navigation-items">
       <li>
@@ -13,36 +17,28 @@
         </a>
       </li>
 
-      <!-- Show only if user is logged in -->
-      <li>
-        <a *ngIf="auth.loggedIn" mat-button routerLink="/meal-planner">
+      <li *ngIf="auth.isAuthenticated">
+        <a mat-button routerLink="/meal-planner">
           <span>Meal Planner</span>
         </a>
       </li>
-      <li>
-        <a *ngIf="auth.loggedIn" mat-button routerLink="/profile">
+
+      <li *ngIf="auth.isAuthenticated">
+        <a mat-button routerLink="/profile">
           <mat-icon>face</mat-icon>
           <span>Profile</span>
         </a>
       </li>
 
-      <!-- Show Login/Register if not logged in -->
-      <li>
-        <a *ngIf="!auth.loggedIn" (click)="login()" mat-button routerLink="/login">
+      <li *ngIf="!auth.isAuthenticated">
+        <a mat-button routerLink="/login">
           <mat-icon>account_circle</mat-icon>
           <span>Login</span>
         </a>
       </li>
-      <li>
-        <a *ngIf="!auth.loggedIn" mat-button routerLink="/signup">
-          <span>SignUp</span>
-        </a>
-      </li>
 
-      <!-- Show Logout if logged in -->
-      <li>
-        <a *ngIf="auth.loggedIn" (click)="logout()" (keydown.enter)="logout()" (keydown.space)="logout()" mat-button
-          tabindex="0">
+      <li *ngIf="auth.isAuthenticated">
+        <a mat-button routerLink="/" (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
           <span>Logout</span>
         </a>
