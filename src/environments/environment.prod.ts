@@ -1,12 +1,12 @@
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyDOPd5F7Rp1KXtyrxjf8p233wJdg2LiR44",
-    authDomain: "healthy-recipe-tracker.firebaseapp.com",
-    projectId: "healthy-recipe-tracker",
-    storageBucket: "healthy-recipe-tracker.firebasestorage.app",
-    messagingSenderId: "207578814829",
-    appId: "1:207578814829:web:a5a8203da34903f881e264",
-    measurementId: "G-XRSE1Z32LB"
+    apiKey: process.env['FIREBASE_API_KEY'],
+    authDomain: process.env['FIREBASE_AUTH_DOMAIN'],
+    projectId: process.env['FIREBASE_PROJECT_ID'],
+    storageBucket: process.env['FIREBASE_STORAGE_BUCKET'],
+    messagingSenderId: process.env['FIREBASE_MESSAGING_SENDER_ID'],
+    appId: process.env['FIREBASE_APP_ID'],
+    measurementId: process.env['FIREBASE_MEASUREMENT_ID']
   }
 };

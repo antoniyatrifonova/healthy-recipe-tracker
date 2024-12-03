@@ -25,7 +25,11 @@ export class RecipesListComponent implements OnInit {
   recipes$: Observable<{ allRecipes: Recipe[], mostRatedRecipes: Recipe[] }>;
 
   constructor(private recipesService: RecipesService) {
-    this.recipes$ = this.recipesService.getRecipes().pipe(
+    this.recipes$ = this.getRecipes();
+  }
+
+  private getRecipes(): Observable<{ allRecipes: Recipe[], mostRatedRecipes: Recipe[] }> {
+    return this.recipesService.getRecipes().pipe(
       map((recipes) => {
         const recipesWithDefaultRating = recipes.map(recipe => ({
           ...recipe,
@@ -46,8 +50,6 @@ export class RecipesListComponent implements OnInit {
 
 
   // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
-  ngOnInit(): void {
-    // empty for now
-  }
+  ngOnInit(): void {}
 
 }

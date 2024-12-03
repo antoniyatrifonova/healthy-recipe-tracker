@@ -31,6 +31,7 @@ export class SidenavListComponent {
   }
 
   logout() {
+    this.onClose();
     this.auth.logout();
   }
 

@@ -4,8 +4,8 @@
   <a mat-list-item *ngIf="auth.isAuthenticated" (click)="onClose()" routerLink="/profile">Profile</a>
   <a mat-list-item *ngIf="!auth.isAuthenticated" (click)="onClose()" routerLink="/login">Login</a>
   <a mat-list-item *ngIf="!auth.isAuthenticated" (click)="onClose()" routerLink="/signup">SignUp</a>
-  <a mat-list-item *ngIf="auth.isAuthenticated" (click)="onClose(); logout()" (keydown.enter)="logout()"
-    (keydown.space)="logout()" routerLink="/login">
+  <a mat-list-item *ngIf="auth.isAuthenticated" (click)="logout()" (keydown.enter)="logout()" (keydown.space)="logout()"
+    routerLink="/login">
     Logout
   </a>
 </mat-nav-list>
