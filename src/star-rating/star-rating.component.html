@@ -1,0 +1,3 @@
+<mat-icon *ngFor="let star of stars" [ngClass]="star">
+  {{ star === 'filled' ? 'star' : star === 'half-filled' ? 'star_half' : 'star_border' }}
+</mat-icon>
