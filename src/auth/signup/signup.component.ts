@@ -12,12 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MaterialModel,
-    FlexLayoutModule
-  ]
+  imports: [CommonModule, FormsModule, MaterialModel, FlexLayoutModule],
 })
 export class SignupComponent {
   isLoading = false;
@@ -36,11 +31,11 @@ export class SignupComponent {
     this.isLoading = true;
     this.authService.register(email, password).subscribe(
       () => {
-        this.router.navigate(['/profile']); // Redirect to profile page after successful signup
+        this.router.navigate(['/profile']);
       },
       (err) => {
         this.isLoading = false;
-        this.error = 'Signup failed. Please try again.';  // Show error message
+        this.error = 'Signup failed. Please try again.';
       }
     );
   }

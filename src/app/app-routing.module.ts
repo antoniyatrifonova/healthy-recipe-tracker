@@ -7,40 +7,43 @@ import { RecipeComponent } from '../recipes/recipe/recipe.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { ProfileComponent } from '../auth/profile/profile.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
-    redirectTo: "/recipes",
-    pathMatch: 'full'
+    redirectTo: '/recipes',
+    pathMatch: 'full',
   },
   {
-    path: "recipes",
-    loadComponent: () => import('../recipes/recipes-list/recipes-list.component').then(m => m.RecipesListComponent)
+    path: 'recipes',
+    loadComponent: () =>
+      import('../recipes/recipes-list/recipes-list.component').then(
+        (m) => m.RecipesListComponent
+      ),
   },
   {
-    path: "recipes/:id",
-    component: RecipeComponent
+    path: 'recipes/:id',
+    component: RecipeComponent,
   },
   {
-    path: "login",
-    component: LoginComponent
+    path: 'login',
+    component: LoginComponent,
   },
   {
-    path: "signup",
-    component: SignupComponent
+    path: 'signup',
+    component: SignupComponent,
   },
   {
-    path: "profile",
-    component: ProfileComponent
+    path: 'profile',
+    component: ProfileComponent,
   },
   {
-    path: "meal-planner",
-    component: MealPlannerComponent
-  }
+    path: 'meal-planner',
+    component: MealPlannerComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

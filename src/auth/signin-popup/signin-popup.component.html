@@ -1,0 +1,16 @@
+<mat-dialog-content fxLayout="column" fxLayoutAlign="center center" class="popup-content">
+  <h2>Welcome back.</h2>
+  <button mat-raised-button (click)="loginWithGoogle()">
+    <img src="/assets/images/google_signup.svg" alt="Google Logo" width="20" height="20" />
+    Sign in with Google
+  </button>
+
+  <button mat-raised-button (click)="openEmailLogin()">
+    <img src="/assets/images/mail.png" alt="Mail" width="20" height="20" />
+    Sign in with Email
+  </button>
+
+  <div class="create-account">
+    <p>No account? <a mat-button (click)="openRegister()">Create one</a></p>
+  </div>
+</mat-dialog-content>

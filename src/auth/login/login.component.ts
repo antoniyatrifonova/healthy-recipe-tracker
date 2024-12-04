@@ -17,8 +17,8 @@ import { Router, RouterModule } from '@angular/router';
     FormsModule,
     MaterialModel,
     FlexLayoutModule,
-    RouterModule
-  ]
+    RouterModule,
+  ],
 })
 export class LoginComponent {
   isLoading = false;
@@ -26,20 +26,23 @@ export class LoginComponent {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  onLogin(form : NgForm) {
+  onLogin(form: NgForm) {
     if (form.invalid) return;
 
     const email = form.value.email;
     const password = form.value.password;
 
     this.isLoading = true;
-    this.authService.login(email, password)
-      .then(() => {
-        this.router.navigate(['/profile']); // Redirect to profile page on successful login
-      })
-      .catch((err) => {
+    this.authService.login(email, password).subscribe({
+      next: () => {
         this.isLoading = false;
-        this.error = 'Login failed. Please check your credentials.';  // Show error message
-      });
+        this.router.navigate(['/profile']);
+      },
+      error: (err) => {
+        this.isLoading = false;
+        this.error = 'Login failed. Please check your credentials.';
+        console.error('Login error:', err);
+      },
+    });
   }
 }

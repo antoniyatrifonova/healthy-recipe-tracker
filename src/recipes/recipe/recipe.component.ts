@@ -12,14 +12,10 @@ import { RecipesService } from '../../shared/services/recipes.service';
   templateUrl: './recipe.component.html',
   styleUrls: ['./recipe.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule
-  ]
+  imports: [CommonModule, RouterModule],
 })
 export class RecipeComponent implements OnInit {
-
-  recipe!: Observable<Recipe | undefined>;
+  recipe!: Observable<Recipe | null>;
 
   constructor(
     private route: ActivatedRoute,

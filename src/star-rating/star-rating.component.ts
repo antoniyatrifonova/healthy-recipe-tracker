@@ -29,7 +29,5 @@ export class StarRatingComponent {
     while (this.stars.length < 5) {
       this.stars.push('empty');
     }
-
-    console.log(this.stars);
   }
 }

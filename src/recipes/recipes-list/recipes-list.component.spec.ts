@@ -1,53 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-import { of } from 'rxjs';
-
+import { TestBed } from '@angular/core/testing';
 import { RecipesListComponent } from './recipes-list.component';
+import { RouterTestingModule } from '@angular/router/testing';
 import { RecipesService } from 'src/shared/services/recipes.service';
-
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 describe('RecipesListComponent', () => {
-  let component: RecipesListComponent;
-  let fixture: ComponentFixture<RecipesListComponent>;
-  let mockRecipesService: jasmine.SpyObj<RecipesService>;
-
   beforeEach(async () => {
-    mockRecipesService = jasmine.createSpyObj('RecipesService', ['getRecipes']);
-    mockRecipesService.getRecipes.and.returnValue(of([]));
-
     await TestBed.configureTestingModule({
-      imports: [
-        RecipesListComponent,
-        AngularFireModule.initializeApp({
-          apiKey: 'mock-api-key',
-          authDomain: 'mock-auth-domain',
-          projectId: 'mock-project-id',
-          storageBucket: 'mock-storage-bucket',
-          messagingSenderId: 'mock-sender-id',
-          appId: 'mock-app-id',
-        }),
-       ],
-       providers: [
-        { provide: RecipesService, useValue: mockRecipesService },
-        { provide: AngularFirestore, useClass: MockAngularFirestore }
-       ]
-    })
-    .compileComponents();
-
-    fixture = TestBed.createComponent(RecipesListComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [RecipesListComponent, RouterTestingModule],
+      providers: [
+        RecipesService,
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideFirestore(() => getFirestore()),
+      ],
+    }).compileComponents();
   });
 
   it('should create', () => {
+    const fixture = TestBed.createComponent(RecipesListComponent);
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
-
-class MockAngularFirestore {
-  collection() {
-    return { valueChanges: () => [] };
-  }
-}

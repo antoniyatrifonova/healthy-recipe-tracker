@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-
-import { Observable, from, of } from 'rxjs';
-import { User } from '@firebase/auth-types';
-import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  createUserWithEmailAndPassword,
+  User,
+  GoogleAuthProvider,
+} from '@angular/fire/auth';
+import { Observable, from, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,31 +18,57 @@ import { Router } from '@angular/router';
 export class AuthService {
   public isAuthenticated = false;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) {
-    // empty for now
-  }
+  constructor(private router: Router, private auth: Auth) {}
 
-  register(email: string, password: string): Observable<User | null> {
-    const user = from(this.afAuth.createUserWithEmailAndPassword(email, password)).pipe(
-      map((userCredential) => userCredential.user),
+  register(email: string, password: string) {
+    return from(
+      createUserWithEmailAndPassword(this.auth, email, password)
+    ).pipe(
+      map((userCredential) => {
+        this.isAuthenticated = true;
+        return userCredential.user;
+      }),
       catchError((error) => {
         console.error('Registration error', error);
         return of(null);
       })
     );
-    if (user){
-      this.isAuthenticated = true;
-    }
-    return user;
   }
 
   login(email: string, password: string) {
-    this.isAuthenticated = true;
-    return this.afAuth.signInWithEmailAndPassword(email, password);
+    return from(signInWithEmailAndPassword(this.auth, email, password)).pipe(
+      map((userCredential) => {
+        this.isAuthenticated = true;
+        return userCredential.user;
+      }),
+      catchError((error) => {
+        console.error('Login error', error);
+        return of(null);
+      })
+    );
+  }
+
+  googleLogin(): Observable<User | null> {
+    const provider = new GoogleAuthProvider();
+    return from(signInWithPopup(this.auth, provider)).pipe(
+      map((userCredential) => {
+        this.isAuthenticated = true;
+        return userCredential.user;
+      }),
+      catchError((error) => {
+        console.error('Google login error', error);
+        return of(null);
+      })
+    );
   }
 
   logout(): void {
-    this.router.navigate(['/login']);
-    this.isAuthenticated = false;
+    from(signOut(this.auth)).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+        this.isAuthenticated = false;
+      },
+      error: (error) => console.error('Logout error', error),
+    });
   }
 }
