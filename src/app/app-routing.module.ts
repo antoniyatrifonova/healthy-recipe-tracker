@@ -6,6 +6,7 @@ import { MealPlannerComponent } from '../meal-planner/meal-planner.component';
 import { RecipeComponent } from '../recipes/recipe/recipe.component';
 import { LoginComponent } from '../auth/login/login.component';
 import { ProfileComponent } from '../auth/profile/profile.component';
+import { recipeResolver } from 'src/recipes/recipe/recipe-resolver.function';
 
 export const routes: Routes = [
   {
@@ -23,6 +24,7 @@ export const routes: Routes = [
   {
     path: 'recipes/:id',
     component: RecipeComponent,
+    resolve: { recipe: recipeResolver },
   },
   {
     path: 'login',

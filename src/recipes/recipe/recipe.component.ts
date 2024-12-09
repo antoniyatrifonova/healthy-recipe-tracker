@@ -2,10 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
-import { Observable } from 'rxjs';
-
 import { Recipe } from '../../shared/model/recipe';
-import { RecipesService } from '../../shared/services/recipes.service';
 
 @Component({
   selector: 'app-recipe',
@@ -15,22 +12,17 @@ import { RecipesService } from '../../shared/services/recipes.service';
   imports: [CommonModule, RouterModule],
 })
 export class RecipeComponent implements OnInit {
-  recipe!: Observable<Recipe | null>;
+  recipe: Recipe | null = null;
+  error = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private recipesService: RecipesService,
-    private router: Router
-  ) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    const recipeId = this.route.snapshot.paramMap.get('id');
+    this.recipe = this.route.snapshot.data['recipe'];
 
-    if (recipeId) {
-      this.recipe = this.recipesService.getRecipeById(recipeId);
-    } else {
-      console.error('Recipe ID is undefined');
-      this.router.navigate(['/recipes']);
+    if (!this.recipe) {
+      console.error('Failed to load recipe data');
+      this.error = true;
     }
   }
 }

@@ -1,9 +1,28 @@
-<div *ngIf="recipe | async as recipe; else loading">
-  <h1>{{ recipe.title }}</h1>
-  <img [src]="recipe.imageUrl" alt="{{ recipe.title }}">
-  <p>Portions: {{ recipe.portions }}</p>
-  <p>Instructions: {{ recipe.instructions }}</p>
+<div *ngIf="!error; else errorTemplate" class="recipe-details">
+  <h1>{{ recipe?.title }}</h1>
+  <img [src]="recipe?.imageUrl" alt="{{ recipe?.title }}" class="recipe-image" />
+
+  <p><strong>Portions:</strong> {{ recipe?.portions }}</p>
+
+  <section class="ingredients">
+    <h2>Ingredients</h2>
+    <ul>
+      <li *ngFor="let ingredient of recipe?.ingredients">
+        {{ ingredient.quantity }} {{ ingredient.unit }} {{ ingredient.name }}
+      </li>
+    </ul>
+  </section>
+
+  <section class="instructions">
+    <h2>Instructions</h2>
+    <p>{{ recipe?.instructions }}</p>
+  </section>
 </div>
-<ng-template #loading>
-  <p>Loading recipe...</p>
+
+<ng-template #errorTemplate>
+  <div class="error-message">
+    <h2>Error</h2>
+    <p>Sorry, we couldn't load the recipe. Please try again later.</p>
+    <a routerLink="/recipes" class="back-link">Back to Recipes</a>
+  </div>
 </ng-template>
