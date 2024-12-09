@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { LoadingComponent } from 'src/loading/loading.component';
 import { HeaderComponent } from 'src/navigation/header/header.component';
 import { SidenavListComponent } from 'src/navigation/sidenav-list/sidenav-list.component';
 import { MaterialModel } from 'src/shared/material.module';
@@ -9,7 +10,13 @@ import { MaterialModel } from 'src/shared/material.module';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true,
-  imports: [MaterialModel, RouterModule, HeaderComponent, SidenavListComponent],
+  imports: [
+    MaterialModel,
+    RouterModule,
+    HeaderComponent,
+    SidenavListComponent,
+    LoadingComponent,
+  ],
 })
 export class AppComponent implements OnInit {
   constructor() {}
